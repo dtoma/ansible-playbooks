@@ -7,4 +7,5 @@
   apt: upgrade=dist
 - name: install software-properties-common
   apt: name=software-properties-common state=latest update_cache=yes
-
+- name: ensure proper locales
+  shell: echo "LC_CTYPE=\"en_US.UTF-8\"\nLC_ALL=\"en_US.UTF-8\"" > /etc/default/locale
