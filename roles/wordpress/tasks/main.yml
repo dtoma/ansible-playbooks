@@ -1,0 +1,12 @@
+---
+- name: Download Wordpress
+  get_url: url=https://wordpress.org/latest.tar.gz dest=/home/dtoma/wordpress.tar.gz
+
+- name: Extract archive
+  command: /bin/tar -xzf wordpress.tar.gz
+
+- name: install php5-gd
+  apt: name=php5-gd state=latest update_cache=yes
+
+- name: install php5-gd
+  apt: name=libssh2-php state=latest update_cache=yes

@@ -1,0 +1,13 @@
+---
+- name: install php5-fpm
+  apt: name=php5-fpm state=latest update_cache=yes
+- name: install php5-mysql
+  apt: name=php5-mysql state=latest update_cache=yes
+- name: upload php.ini
+  template: src=templates/php.ini dest=/etc/php5/fpm/
+- service: name=php5-fpm state=restarted
+- name: upload nginx default config
+  template: src=templates/default dest=/etc/nginx/sites-available/default
+- service: name=nginx state=restarted
+- name: upload test php script
+  template: src=templates/info.php dest=/usr/share/nginx/html/info.php
