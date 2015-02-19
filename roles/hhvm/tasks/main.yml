@@ -1,0 +1,18 @@
+---
+- name: install hhvm gpg key
+  apt_key: url=http://dl.hhvm.com/conf/hhvm.gpg.key state=present
+
+- name: add hhvm deb repository
+  apt_repository: repo='deb http://dl.hhvm.com/ubuntu trusty main' state=present
+
+- name: updated apt
+  apt: update_cache=yes
+
+- name: install hhvm packages
+  apt: pkg=hhvm state=latest update_cache=yes force=yes
+
+- name: setupd hvvm restart on boot
+  shell: sudo update-rc.d hhvm defaults
+
+- name: configure nginx
+  shell: sudo /usr/share/hhvm/install_fastcgi.sh
