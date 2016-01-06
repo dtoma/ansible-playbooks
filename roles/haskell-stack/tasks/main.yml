@@ -1,0 +1,12 @@
+---
+- name: install stack gpg key
+  shell: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 575159689BEFB442
+
+- name: add stack deb repository
+  apt_repository: repo='deb http://download.fpcomplete.com/ubuntu trusty main' state=present
+
+- name: updated apt
+  apt: update_cache=yes
+
+- name: install stack packages
+  apt: pkg=stack state=latest update_cache=yes force=yes
